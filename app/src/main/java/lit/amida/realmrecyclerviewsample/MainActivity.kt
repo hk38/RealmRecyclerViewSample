@@ -26,12 +26,12 @@ class MainActivity : AppCompatActivity() {
         // 初期データ作成が必要なければ不要
         if(realm.where(SaveData::class.java).findAll().isNullOrEmpty()) createInitList()
 
-        // SecondActivityに遷移するためのIntent
-        val intent = Intent(this, SecondActivity::class.java)
 
         // RecyclerView用のAdapterを作成
         adapter = MyListAdapter(this, object: MyListAdapter.OnItemClickListner{
             override fun onItemClick(item: SaveData) {
+                // SecondActivityに遷移するためのIntent
+                val intent = Intent(applicationContext, SecondActivity::class.java)
                 // RecyclerViewの要素をタップするとintentによりSecondActivityに遷移する
                 // また，要素のidをSecondActivityに渡す
                 intent.putExtra("id", item.id)
@@ -47,7 +47,12 @@ class MainActivity : AppCompatActivity() {
 
 
         //floating action buttonタップ時の動作
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { startActivity(intent) }
+        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
+            // SecondActivityに遷移するためのIntent
+            val intent = Intent(applicationContext, SecondActivity::class.java)
+            // SecondActivityに遷移
+            startActivity(intent)
+        }
     }
 
     override fun onResume() {
