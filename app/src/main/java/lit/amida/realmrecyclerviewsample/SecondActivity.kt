@@ -63,7 +63,7 @@ class SecondActivity : AppCompatActivity() {
             val item = realm.where(SaveData::class.java).equalTo("id", id).findFirst()
             item?.title = findViewById<EditText>(R.id.edit_title).text.toString()
             item?.content = findViewById<EditText>(R.id.edit_content).text.toString()
-            item?.details = findViewById<EditText>(R.id.edit_title).text.toString()
+            item?.details = findViewById<EditText>(R.id.edit_details).text.toString()
         }
 
         realm.close()
