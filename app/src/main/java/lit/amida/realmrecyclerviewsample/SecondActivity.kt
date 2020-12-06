@@ -57,15 +57,19 @@ class SecondActivity : AppCompatActivity() {
         
     }
 
-    // 終了時にデータを保存してRealmを終了する．
-    override fun onDestroy() {
+    // 画面が切り替わる時にデータを保存
+    override fun onPause() {
         realm.executeTransaction { 
             val item = realm.where(SaveData::class.java).equalTo("id", id).findFirst()
             item?.title = findViewById<EditText>(R.id.edit_title).text.toString()
             item?.content = findViewById<EditText>(R.id.edit_content).text.toString()
             item?.details = findViewById<EditText>(R.id.edit_details).text.toString()
         }
+        super.onPause()
+    }
 
+    // Activity終了時にralmを終了
+    override fun onDestroy() {
         realm.close()
         super.onDestroy()
     }
