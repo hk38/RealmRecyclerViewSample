@@ -1,5 +1,6 @@
 package lit.amida.realmrecyclerviewsample
 
+import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import java.util.*
 
@@ -9,4 +10,4 @@ open class SaveData(
     open var content: String = "",
     open var details: String = "",
     open var icon: Int = 0
-)
+): RealmObject()
