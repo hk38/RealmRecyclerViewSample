@@ -3,9 +3,14 @@ plugins {
     id 'kotlin-android'
 }
 
+apply plugin: 'kotlin-kapt'
+apply plugin: "realm-android"
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
+
+
 
     defaultConfig {
         applicationId "lit.amida.realmrecyclerviewsample"
